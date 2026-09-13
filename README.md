@@ -4,7 +4,7 @@
 
 ## Демоверсия
 
-[Открыть Vault Lab](https://talbek-devnet-yield-vault.aikgjpch.chatgpt.site). Сейчас Sites ограничивает доступ аккаунтом владельца; для проверки преподавателем нужно отдельно открыть доступ или записать видео.
+[Открыть Vault Lab](https://talbek-devnet-yield-vault.aikgjpch.chatgpt.site). Сайт доступен всем по ссылке. Для операций требуется Solana-кошелёк в Devnet и тестовый DEV-USDC.
 
 ## Статус
 
@@ -122,3 +122,12 @@ Vault PDA: `Vyb2fkLFGpNnrVbvdiFZxBvSvD35pJJ7zVBcf2tcvHR`
 Проверенный результат: депозит 100, доходность 10, вывод 50 долей за 55 DEV-USDC. После демонстрации в vault 55 DEV-USDC и 50 долей.
 
 CLI обновлён до 4.2.2; на Intel macOS требуется `brew install libusb`. После частичного сбоя загрузка успешно продолжена через `solana program deploy ... --buffer EXISTING_BUFFER --use-rpc --url devnet`. При сбое сначала проверьте программу и существующие буферы, не создавайте их повторно вслепую.
+
+## Проверка через Phantom — 14 сентября 2026
+
+Пользователь самостоятельно подписал обе операции в браузерном интерфейсе. Результат проверен чтением Devnet, обе транзакции finalized:
+
+- [Депозит 10 DEV-USDC](https://explorer.solana.com/tx/2HiNq5WyUGDLbS9Zf6Bj7Eo5tNNQFMyibyyRsUDfNKNHjLc4HQE8w7FCfZwDSN8Ufw3WnpxfwkKU1pWLt1ZZLRmx?cluster=devnet): начислено 9,090909 доли.
+- [Вывод 5 долей](https://explorer.solana.com/tx/2VV9Ub75xRMw86pEyQTYZa841qQZt5f89tsNbhzVu5FvDZsSoGg8sA472dULPUv2AgdUYqnUKzhA4m8HB4MHcKtu?cluster=devnet): получено 5,5 DEV-USDC.
+
+После проверки у пользователя 95,5 DEV-USDC в кошельке и 4,090909 доли в vault. Общие активы vault: 59,5 DEV-USDC; общее число долей: 54,090909. Это снимок состояния, последующие операции изменят значения.

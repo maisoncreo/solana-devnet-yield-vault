@@ -1,4 +1,4 @@
-# Результаты проверки — 13 сентября 2026
+# Результаты проверки — 14 сентября 2026
 
 ## Выполнено
 
@@ -14,8 +14,8 @@
 ## Deployment и оставшаяся проверка
 
 - Devnet deployment завершён после обновления CLI до 4.2.2 и установки libusb. Программа executable, все 6 транзакций из deployment.json finalized. Итог: 55 DEV-USDC активов и 50 долей.
-- Браузерные транзакции: встроенный браузер не обнаружил Solana-кошелёк.
-- Репозиторий опубликован: https://github.com/maisoncreo/solana-devnet-yield-vault. Демоверсия размещена: https://talbek-devnet-yield-vault.aikgjpch.chatgpt.site (доступ только владельцу). Публичный доступ и видео пока не подготовлены.
+- Браузерные транзакции: депозит и вывод через Phantom проверены в Devnet; обе finalized.
+- Репозиторий опубликован: https://github.com/maisoncreo/solana-devnet-yield-vault. Демоверсия размещена: https://talbek-devnet-yield-vault.aikgjpch.chatgpt.site (публичный доступ открыт). Видео не записано; доступна работающая демоверсия.
 - Профессиональный аудит не проводился. Checklist — внутренняя проверка реализации.
 
 ## Зависимости
@@ -24,3 +24,12 @@ Cargo.lock закрепляет совместимые версии blake3, proc
 Компилятор выдаёт предупреждения макросов Anchor об unexpected cfg и deprecated realloc. Предупреждение post-processing о неизвестных syscalls было проверено реальным выполнением: все 16 транзакционных тестов прошли.
 
 npm install сообщил 15 findings в корневых зависимостях (1 low, 8 moderate, 6 high) и 8 во frontend (3 moderate, 5 high). Они требуют отдельного анализа и устранения до mainnet; автоматическое обновление с breaking changes не выполнялось.
+
+## Проверка через Phantom — 14 сентября 2026
+
+Пользователь самостоятельно подписал обе операции в браузерном интерфейсе. Результат проверен чтением Devnet, обе транзакции finalized:
+
+- [Депозит 10 DEV-USDC](https://explorer.solana.com/tx/2HiNq5WyUGDLbS9Zf6Bj7Eo5tNNQFMyibyyRsUDfNKNHjLc4HQE8w7FCfZwDSN8Ufw3WnpxfwkKU1pWLt1ZZLRmx?cluster=devnet): начислено 9,090909 доли.
+- [Вывод 5 долей](https://explorer.solana.com/tx/2VV9Ub75xRMw86pEyQTYZa841qQZt5f89tsNbhzVu5FvDZsSoGg8sA472dULPUv2AgdUYqnUKzhA4m8HB4MHcKtu?cluster=devnet): получено 5,5 DEV-USDC.
+
+После проверки у пользователя 95,5 DEV-USDC в кошельке и 4,090909 доли в vault. Общие активы vault: 59,5 DEV-USDC; общее число долей: 54,090909. Это снимок состояния, последующие операции изменят значения.
