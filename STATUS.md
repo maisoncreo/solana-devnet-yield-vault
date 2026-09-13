@@ -15,7 +15,7 @@
 
 - Devnet deployment завершён после обновления CLI до 4.2.2 и установки libusb. Программа executable, все 6 транзакций из deployment.json finalized. Итог: 55 DEV-USDC активов и 50 долей.
 - Браузерные транзакции: встроенный браузер не обнаружил Solana-кошелёк.
-- Репозиторий опубликован: https://github.com/maisoncreo/solana-devnet-yield-vault. Публичная демоверсия и видео пока не опубликованы.
+- Репозиторий опубликован: https://github.com/maisoncreo/solana-devnet-yield-vault. Демоверсия размещена: https://talbek-devnet-yield-vault.aikgjpch.chatgpt.site (доступ только владельцу). Публичный доступ и видео пока не подготовлены.
 - Профессиональный аудит не проводился. Checklist — внутренняя проверка реализации.
 
 ## Зависимости

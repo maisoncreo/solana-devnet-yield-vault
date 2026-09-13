@@ -2,6 +2,10 @@
 
 Учебный Solana Yield Vault: SPL Token, Anchor 0.31.1 и React. Только тестовые средства.
 
+## Демоверсия
+
+[Открыть Vault Lab](https://talbek-devnet-yield-vault.aikgjpch.chatgpt.site). Сейчас Sites ограничивает доступ аккаунтом владельца; для проверки преподавателем нужно отдельно открыть доступ или записать видео.
+
 ## Статус
 
 Локальный MVP собран: 10 Rust-тестов и 16 транзакционных тестов прошли, React production build выполнен. Подробности — в `STATUS.md`. Локальный Program ID: `C6BADkFFFckPvxBCzsedCGFVzF9t1ByZszkUTmWjHbzR`. Программа развёрнута в Devnet. Все демонстрационные транзакции получили статус finalized.
