@@ -15,7 +15,7 @@
 
 - Devnet: JavaScript SDK читает сеть, CLI получает HTTP 400. Баланс кошелька FqHWWUZtWDu1YmgempzsHcXd5TVN6W8m66HKwR594ur2: 0 Devnet SOL. Запрос airdrop 2 SOL завершился Internal error. Deployment и Explorer-подписей пока нет.
 - Браузерные транзакции: встроенный браузер не обнаружил Solana-кошелёк.
-- Публичный репозиторий и публичная демоверсия пока не опубликованы.
+- Репозиторий опубликован: https://github.com/maisoncreo/solana-devnet-yield-vault. Публичная демоверсия и видео пока не опубликованы.
 - Профессиональный аудит не проводился. Checklist — внутренняя проверка реализации.
 
 ## Зависимости
