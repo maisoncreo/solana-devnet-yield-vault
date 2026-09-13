@@ -8,3 +8,5 @@ target/
 id.json
 .DS_Store
 frontend/dist/
+
+dist/
