@@ -1,0 +1,16 @@
+{
+  "cluster": "devnet",
+  "programId": "C6BADkFFFckPvxBCzsedCGFVzF9t1ByZszkUTmWjHbzR",
+  "mint": "4LCPHLefwLvMrjiiQAwunf9Aa9kxBv4Z2LbzGeiVoR1X",
+  "admin": "FqHWWUZtWDu1YmgempzsHcXd5TVN6W8m66HKwR594ur2",
+  "vault": "Vyb2fkLFGpNnrVbvdiFZxBvSvD35pJJ7zVBcf2tcvHR",
+  "decimals": 6,
+  "transactions": {
+    "mintTx": "26sdgs7jZA9ZANZsgm8Jbp8GRL5em64TK6WPnDRXpZa6kwXRdy9nZXZfaB1zkdzgmTiCrKF73PXVW5mnBcc3VymJ",
+    "initialize": "2r8sGDHirHmLg2hJBrMkzD5NArqx1YsjVuAgckYSLhArFSE3FJTNYPHpFhVDUMkgeSxKVUPX9NXi3z5KWcW7EXcZ",
+    "deposit": "d2Xsx9jCXa8zXxy252hErYwDDrGjFihaVyjMfhVFVu1NsDZbqdip9BGM3h14WyycSWDjJE78Six5DD7oA4fKSrM",
+    "addYield": "3e7knBVUbBo8bgJHjF2Fhh8KPMFNdQzxEZEErhHYrKXu1y5WKwH9iGRKoVnSzetWVKAs3SKypQJfzM23KsQ9F1Bo",
+    "withdraw": "4MzGMEgNgHUZjFhzcLgySceWqYWvuBPo6d73yGEGvvjdXgbyvKfcwea7zyHgwBoFrnv7PX974116Ji4HmSENBLmV",
+    "deploy": "3g6FYh57HdVjQUtBW1WgAnvVKQp5MPcmocJGgzP7QoHYtpgTfLhL3FK8EdaDrEJDRLGEDrANqB8kNFiEXKZHaiCT"
+  }
+}

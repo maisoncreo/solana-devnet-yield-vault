@@ -4,7 +4,7 @@
 
 ## Статус
 
-Локальный MVP собран: 10 Rust-тестов и 16 транзакционных тестов прошли, React production build выполнен. Подробности — в `STATUS.md`. Локальный Program ID: `C6BADkFFFckPvxBCzsedCGFVzF9t1ByZszkUTmWjHbzR`. Программа пока не развёрнута в Devnet.
+Локальный MVP собран: 10 Rust-тестов и 16 транзакционных тестов прошли, React production build выполнен. Подробности — в `STATUS.md`. Локальный Program ID: `C6BADkFFFckPvxBCzsedCGFVzF9t1ByZszkUTmWjHbzR`. Программа развёрнута в Devnet. Все демонстрационные транзакции получили статус finalized.
 
 ## Архитектура
 
@@ -99,3 +99,22 @@ npm run build
 - [Anchor PDA](https://www.anchor-lang.com/docs/basics/pda)
 - [Anchor token transfers](https://www.anchor-lang.com/docs/tokens/basics/transfer-tokens)
 - [Account constraints](https://www.anchor-lang.com/docs/references/account-constraints)
+
+## Проверенное развёртывание Devnet
+
+Program ID: `C6BADkFFFckPvxBCzsedCGFVzF9t1ByZszkUTmWjHbzR`
+
+Mint DEV-USDC: `4LCPHLefwLvMrjiiQAwunf9Aa9kxBv4Z2LbzGeiVoR1X`
+
+Vault PDA: `Vyb2fkLFGpNnrVbvdiFZxBvSvD35pJJ7zVBcf2tcvHR`
+
+- [mintTx](https://explorer.solana.com/tx/26sdgs7jZA9ZANZsgm8Jbp8GRL5em64TK6WPnDRXpZa6kwXRdy9nZXZfaB1zkdzgmTiCrKF73PXVW5mnBcc3VymJ?cluster=devnet)
+- [initialize](https://explorer.solana.com/tx/2r8sGDHirHmLg2hJBrMkzD5NArqx1YsjVuAgckYSLhArFSE3FJTNYPHpFhVDUMkgeSxKVUPX9NXi3z5KWcW7EXcZ?cluster=devnet)
+- [deposit](https://explorer.solana.com/tx/d2Xsx9jCXa8zXxy252hErYwDDrGjFihaVyjMfhVFVu1NsDZbqdip9BGM3h14WyycSWDjJE78Six5DD7oA4fKSrM?cluster=devnet)
+- [addYield](https://explorer.solana.com/tx/3e7knBVUbBo8bgJHjF2Fhh8KPMFNdQzxEZEErhHYrKXu1y5WKwH9iGRKoVnSzetWVKAs3SKypQJfzM23KsQ9F1Bo?cluster=devnet)
+- [withdraw](https://explorer.solana.com/tx/4MzGMEgNgHUZjFhzcLgySceWqYWvuBPo6d73yGEGvvjdXgbyvKfcwea7zyHgwBoFrnv7PX974116Ji4HmSENBLmV?cluster=devnet)
+- [deploy](https://explorer.solana.com/tx/3g6FYh57HdVjQUtBW1WgAnvVKQp5MPcmocJGgzP7QoHYtpgTfLhL3FK8EdaDrEJDRLGEDrANqB8kNFiEXKZHaiCT?cluster=devnet)
+
+Проверенный результат: депозит 100, доходность 10, вывод 50 долей за 55 DEV-USDC. После демонстрации в vault 55 DEV-USDC и 50 долей.
+
+CLI обновлён до 4.2.2; на Intel macOS требуется `brew install libusb`. После частичного сбоя загрузка успешно продолжена через `solana program deploy ... --buffer EXISTING_BUFFER --use-rpc --url devnet`. При сбое сначала проверьте программу и существующие буферы, не создавайте их повторно вслепую.

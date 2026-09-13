@@ -11,9 +11,9 @@
 - `frontend: npm run build`: успешно; предупреждение о JS bundle более 500 kB.
 - UI проверен в браузере: страница отображается, окно выбора кошелька открывается; транзакции без конфигурации недоступны.
 
-## Не завершено
+## Deployment и оставшаяся проверка
 
-- Devnet: JavaScript SDK читает сеть, CLI получает HTTP 400. Баланс кошелька FqHWWUZtWDu1YmgempzsHcXd5TVN6W8m66HKwR594ur2: 0 Devnet SOL. Запрос airdrop 2 SOL завершился Internal error. Deployment и Explorer-подписей пока нет.
+- Devnet deployment завершён после обновления CLI до 4.2.2 и установки libusb. Программа executable, все 6 транзакций из deployment.json finalized. Итог: 55 DEV-USDC активов и 50 долей.
 - Браузерные транзакции: встроенный браузер не обнаружил Solana-кошелёк.
 - Репозиторий опубликован: https://github.com/maisoncreo/solana-devnet-yield-vault. Публичная демоверсия и видео пока не опубликованы.
 - Профессиональный аудит не проводился. Checklist — внутренняя проверка реализации.

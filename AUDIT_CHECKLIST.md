@@ -21,7 +21,7 @@
 - [x] Проверен frontend build и открытие wallet modal.
 - [ ] Работа с реальным Devnet-кошельком.
 - [ ] Проверены dependency audit findings.
-- [ ] Devnet deployment подтверждён, Program ID и Explorer-ссылки сохранены.
+- [x] Devnet deployment подтверждён, Program ID и 6 finalized Explorer-ссылок сохранены.
 - [x] Публичный GitHub-репозиторий создан; ключи, target и node_modules исключены.
 - [ ] Демо опубликовано или записано видео.
 - [ ] Upgrade authority и ограничения объяснены в демонстрации.

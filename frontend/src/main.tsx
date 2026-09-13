@@ -20,7 +20,17 @@ function App(){
  const [data,setData]=useState({assets:0n,shares:0n,mine:0n});
  useEffect(()=>{Promise.all([fetch('/deployment.json').then(r=>{if(!r.ok)throw Error();return r.json()}),fetch('/defi_vault.json').then(r=>{if(!r.ok)throw Error();return r.json()})]).then(([c,i])=>{setConfig(c);setIdl(i);setStatus('Подключите кошелёк в Devnet')}).catch(()=>setStatus('Программа ещё не развёрнута. Конфигурация появится после Devnet deployment.'));},[]);
  function client(){if(!wallet||!config||!idl)throw Error('Подключите кошелёк и загрузите конфигурацию');const program=new Program(idl,new AnchorProvider(connection,wallet,{commitment:'confirmed'}));if(program.programId.toBase58()!==config.programId)throw Error('Program ID не совпадает с IDL');const mint=new PublicKey(config.mint);const vault=PublicKey.findProgramAddressSync([Buffer.from('vault'),new PublicKey(config.admin).toBuffer(),mint.toBuffer()],program.programId)[0];const vaultToken=PublicKey.findProgramAddressSync([Buffer.from('tokens'),vault.toBuffer()],program.programId)[0];const position=PublicKey.findProgramAddressSync([Buffer.from('position'),vault.toBuffer(),wallet.publicKey.toBuffer()],program.programId)[0];const userToken=getAssociatedTokenAddressSync(mint,wallet.publicKey);return {program,mint,vault,vaultToken,position,userToken};}
- async function refresh(){if(!wallet||!config||!idl)return;const c=client();const v=await (c.program.account as any).vault.fetch(c.vault);const p=await (c.program.account as any).userPosition.fetchNullable(c.position);setData({assets:BigInt(v.totalAssets.toString()),shares:BigInt(v.totalShares.toString()),mine:BigInt(p?.shares.toString()??'0')});}
+ async function refresh(){
+  if(!config||!idl)return;
+  const program=new Program(idl,{connection});
+  const mint=new PublicKey(config.mint);
+  const vault=PublicKey.findProgramAddressSync([Buffer.from('vault'),new PublicKey(config.admin).toBuffer(),mint.toBuffer()],program.programId)[0];
+  const v=await (program.account as any).vault.fetch(vault);
+  let mine=0n;
+  if(wallet){const position=PublicKey.findProgramAddressSync([Buffer.from('position'),vault.toBuffer(),wallet.publicKey.toBuffer()],program.programId)[0];const p=await (program.account as any).userPosition.fetchNullable(position);mine=BigInt(p?.shares.toString()??'0');}
+  setData({assets:BigInt(v.totalAssets.toString()),shares:BigInt(v.totalShares.toString()),mine});
+ }
+
  useEffect(()=>{setData({assets:0n,shares:0n,mine:0n});refresh().catch(e=>setStatus(String(e.message)));},[wallet?.publicKey.toBase58(),config,idl]);
  async function run(op:'deposit'|'withdraw'|'addYield'){
   setBusy(true);setSig('');
