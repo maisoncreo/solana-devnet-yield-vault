@@ -10,3 +10,5 @@ id.json
 frontend/dist/
 
 dist/
+
+.openai/
