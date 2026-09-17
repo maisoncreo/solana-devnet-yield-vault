@@ -1,0 +1,410 @@
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "@coral-xyz/anchor": {
+      "name": "@coral-xyz/anchor",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "@coral-xyz/borsh",
+        "@solana/web3.js"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@coral-xyz/anchor"
+      ],
+      "fixAvailable": false
+    },
+    "@coral-xyz/borsh": {
+      "name": "@coral-xyz/borsh",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@solana/web3.js"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@coral-xyz/borsh"
+      ],
+      "fixAvailable": true
+    },
+    "@solana-mobile/mobile-wallet-adapter-protocol-web3js": {
+      "name": "@solana-mobile/mobile-wallet-adapter-protocol-web3js",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@solana/web3.js"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana-mobile/mobile-wallet-adapter-protocol-web3js"
+      ],
+      "fixAvailable": true
+    },
+    "@solana-mobile/wallet-adapter-mobile": {
+      "name": "@solana-mobile/wallet-adapter-mobile",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@solana-mobile/mobile-wallet-adapter-protocol-web3js",
+        "@solana/wallet-adapter-base",
+        "@solana/web3.js"
+      ],
+      "effects": [
+        "@solana/wallet-adapter-react"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/wallet-adapter-react-ui/node_modules/@solana/wallet-adapter-base-ui/node_modules/@solana/wallet-adapter-react/node_modules/@solana-mobile/wallet-adapter-mobile",
+        "node_modules/@solana/wallet-adapter-react/node_modules/@solana-mobile/wallet-adapter-mobile"
+      ],
+      "fixAvailable": false
+    },
+    "@solana/buffer-layout-utils": {
+      "name": "@solana/buffer-layout-utils",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@solana/web3.js",
+        "bigint-buffer"
+      ],
+      "effects": [
+        "@solana/spl-token"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/buffer-layout-utils"
+      ],
+      "fixAvailable": {
+        "name": "@solana/spl-token",
+        "version": "0.1.8",
+        "isSemVerMajor": true
+      }
+    },
+    "@solana/spl-token": {
+      "name": "@solana/spl-token",
+      "severity": "high",
+      "isDirect": true,
+      "via": [
+        "@solana/buffer-layout-utils",
+        "@solana/spl-token-group",
+        "@solana/spl-token-metadata",
+        "@solana/web3.js"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/spl-token"
+      ],
+      "fixAvailable": {
+        "name": "@solana/spl-token",
+        "version": "0.1.8",
+        "isSemVerMajor": true
+      }
+    },
+    "@solana/spl-token-group": {
+      "name": "@solana/spl-token-group",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@solana/web3.js"
+      ],
+      "effects": [
+        "@solana/spl-token"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/spl-token-group"
+      ],
+      "fixAvailable": {
+        "name": "@solana/spl-token",
+        "version": "0.1.8",
+        "isSemVerMajor": true
+      }
+    },
+    "@solana/spl-token-metadata": {
+      "name": "@solana/spl-token-metadata",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@solana/web3.js"
+      ],
+      "effects": [
+        "@solana/spl-token"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/spl-token-metadata"
+      ],
+      "fixAvailable": {
+        "name": "@solana/spl-token",
+        "version": "0.1.8",
+        "isSemVerMajor": true
+      }
+    },
+    "@solana/wallet-adapter-base": {
+      "name": "@solana/wallet-adapter-base",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@solana/web3.js"
+      ],
+      "effects": [
+        "@solana/wallet-standard-wallet-adapter-react"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/wallet-adapter-react-ui/node_modules/@solana/wallet-adapter-base",
+        "node_modules/@solana/wallet-adapter-react/node_modules/@solana/wallet-adapter-base"
+      ],
+      "fixAvailable": true
+    },
+    "@solana/wallet-adapter-base-ui": {
+      "name": "@solana/wallet-adapter-base-ui",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@solana/wallet-adapter-react",
+        "@solana/web3.js"
+      ],
+      "effects": [
+        "@solana/wallet-adapter-react-ui"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/wallet-adapter-react-ui/node_modules/@solana/wallet-adapter-base-ui"
+      ],
+      "fixAvailable": false
+    },
+    "@solana/wallet-adapter-react": {
+      "name": "@solana/wallet-adapter-react",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "@solana-mobile/wallet-adapter-mobile",
+        "@solana/wallet-adapter-base",
+        "@solana/wallet-standard-wallet-adapter-react",
+        "@solana/web3.js"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/wallet-adapter-react",
+        "node_modules/@solana/wallet-adapter-react-ui/node_modules/@solana/wallet-adapter-base-ui/node_modules/@solana/wallet-adapter-react"
+      ],
+      "fixAvailable": false
+    },
+    "@solana/wallet-adapter-react-ui": {
+      "name": "@solana/wallet-adapter-react-ui",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "@solana/wallet-adapter-base",
+        "@solana/wallet-adapter-base-ui",
+        "@solana/wallet-adapter-react",
+        "@solana/web3.js"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/wallet-adapter-react-ui"
+      ],
+      "fixAvailable": false
+    },
+    "@solana/wallet-standard-wallet-adapter-base": {
+      "name": "@solana/wallet-standard-wallet-adapter-base",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@solana/wallet-adapter-base",
+        "@solana/web3.js"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/wallet-adapter-react-ui/node_modules/@solana/wallet-standard-wallet-adapter-base",
+        "node_modules/@solana/wallet-adapter-react/node_modules/@solana/wallet-standard-wallet-adapter-base"
+      ],
+      "fixAvailable": true
+    },
+    "@solana/wallet-standard-wallet-adapter-react": {
+      "name": "@solana/wallet-standard-wallet-adapter-react",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@solana/wallet-adapter-base",
+        "@solana/wallet-standard-wallet-adapter-base"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/wallet-adapter-react-ui/node_modules/@solana/wallet-adapter-base-ui/node_modules/@solana/wallet-adapter-react/node_modules/@solana/wallet-standard-wallet-adapter-react",
+        "node_modules/@solana/wallet-adapter-react/node_modules/@solana/wallet-standard-wallet-adapter-react"
+      ],
+      "fixAvailable": true
+    },
+    "@solana/web3.js": {
+      "name": "@solana/web3.js",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "jayson"
+      ],
+      "effects": [
+        "@coral-xyz/anchor",
+        "@coral-xyz/borsh",
+        "@solana-mobile/mobile-wallet-adapter-protocol-web3js",
+        "@solana-mobile/wallet-adapter-mobile",
+        "@solana/spl-token",
+        "@solana/spl-token-group",
+        "@solana/spl-token-metadata",
+        "@solana/wallet-adapter-base",
+        "@solana/wallet-adapter-base-ui",
+        "@solana/wallet-adapter-react",
+        "@solana/wallet-adapter-react-ui",
+        "@solana/wallet-standard-wallet-adapter-base"
+      ],
+      "range": "<=0.0.0-pr-29130 || 0.0.4 - 1.99.0",
+      "nodes": [
+        "node_modules/@solana/web3.js"
+      ],
+      "fixAvailable": false
+    },
+    "bigint-buffer": {
+      "name": "bigint-buffer",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1103747,
+          "name": "bigint-buffer",
+          "dependency": "bigint-buffer",
+          "title": "bigint-buffer Vulnerable to Buffer Overflow via toBigIntLE() Function",
+          "url": "https://github.com/advisories/GHSA-3gc7-fjrx-p6mg",
+          "severity": "high",
+          "cwe": [
+            "CWE-120"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=1.1.5"
+        }
+      ],
+      "effects": [
+        "@solana/buffer-layout-utils"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/bigint-buffer"
+      ],
+      "fixAvailable": {
+        "name": "@solana/spl-token",
+        "version": "0.1.8",
+        "isSemVerMajor": true
+      }
+    },
+    "jayson": {
+      "name": "jayson",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "stream-json",
+        "uuid"
+      ],
+      "effects": [
+        "@solana/web3.js"
+      ],
+      "range": ">=2.0.6",
+      "nodes": [
+        "node_modules/jayson"
+      ],
+      "fixAvailable": false
+    },
+    "stream-json": {
+      "name": "stream-json",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1164823,
+          "name": "stream-json",
+          "dependency": "stream-json",
+          "title": "stream-json: pick/ignore/filter/replace filters are O(depth²) on nested input — small crafted JSON blocks the event loop for seconds→minutes (DoS)",
+          "url": "https://github.com/advisories/GHSA-528h-pc64-c93x",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 6.2,
+            "vectorString": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=3.4.0"
+        }
+      ],
+      "effects": [
+        "jayson"
+      ],
+      "range": "<=3.4.0",
+      "nodes": [
+        "node_modules/stream-json"
+      ],
+      "fixAvailable": false
+    },
+    "uuid": {
+      "name": "uuid",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1119441,
+          "name": "uuid",
+          "dependency": "uuid",
+          "title": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided",
+          "url": "https://github.com/advisories/GHSA-w5hq-g745-h8pq",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-787",
+            "CWE-1285"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          },
+          "range": "<11.1.1"
+        }
+      ],
+      "effects": [
+        "jayson"
+      ],
+      "range": "<11.1.1",
+      "nodes": [
+        "node_modules/uuid"
+      ],
+      "fixAvailable": false
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 16,
+      "high": 3,
+      "critical": 0,
+      "total": 19
+    },
+    "dependencies": {
+      "prod": 296,
+      "dev": 61,
+      "optional": 62,
+      "peer": 245,
+      "peerOptional": 0,
+      "total": 609
+    }
+  }
+}

@@ -33,3 +33,13 @@ npm install сообщил 15 findings в корневых зависимост�
 - [Вывод 5 долей](https://explorer.solana.com/tx/2VV9Ub75xRMw86pEyQTYZa841qQZt5f89tsNbhzVu5FvDZsSoGg8sA472dULPUv2AgdUYqnUKzhA4m8HB4MHcKtu?cluster=devnet): получено 5,5 DEV-USDC.
 
 После проверки у пользователя 95,5 DEV-USDC в кошельке и 4,090909 доли в vault. Общие активы vault: 59,5 DEV-USDC; общее число долей: 54,090909. Это снимок состояния, последующие операции изменят значения.
+
+## Повторная проверка после отзыва — 17 сентября 2026
+
+- Отдельная копия без target/node_modules, новый локальный ключ программы.
+- prepare-localnet.cjs сохраняет секцию Devnet; повторная SBF-сборка успешна.
+- Rust: 10 passed; локальные интеграционные тесты: 18 passing (17s).
+- Новые тесты: два вкладчика с распределением доходности и попытка вывода чужой позиции.
+- TypeScript и frontend production build успешны.
+- npm audit: root 3 high, frontend 3 high; остаточный bigint-buffer и остальные замечания описаны в DEPENDENCY_AUDIT.md. Прежние числа выше — исторические.
+- On-chain исходник не изменён, повторный Devnet deploy не выполнялся.
