@@ -1,6 +1,6 @@
 # Local pure-JavaScript bigint adapter
 
-This is new project-owned code, not a repackaged upstream binary or a claim of an upstream fix. npm installs it under the `bigint-buffer` dependency name via a direct local dependency and the `$bigint-buffer` override. The package's actual name is `@vault-lab/bigint-buffer-js` to identify its provenance. Both applications include it in their lockfiles; no registry publication is required.
+This is new project-owned code, not a repackaged upstream binary or a claim of an upstream fix. npm installs it under the `bigint-buffer` dependency name via a direct local dependency and the `$bigint-buffer` override. It retains the dependency name `bigint-buffer` for npm deduplication. Version `1.1.6` is a private local version, NOT an upstream registry release; the `vaultImplementation: pure-js-local` field identifies it. Both applications include it in their lockfiles; no registry publication is required.
 
 The four public functions used by `@solana/buffer-layout-utils` are supported: `toBigIntLE`, `toBigIntBE`, `toBufferLE`, `toBufferBE`. There is no native addon, build script, dynamic loading, or dependency other than Buffer's browser polyfill. The buffer-overflow implementation associated with GHSA-3gc7-fjrx-p6mg is not included.
 

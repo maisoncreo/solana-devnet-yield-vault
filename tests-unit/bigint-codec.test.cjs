@@ -47,7 +47,7 @@ for(const scope of ['..','../frontend']) test(`${scope}: installed SPL layouts r
   const req=createRequire(path.resolve(__dirname,scope,'package.json'));
   const splReq=createRequire(req.resolve('@solana/spl-token'));
   const layoutReq=createRequire(splReq.resolve('@solana/buffer-layout-utils'));
-  assert.equal(layoutReq('bigint-buffer/package.json').name,'@vault-lab/bigint-buffer-js');
+  assert.equal(layoutReq('bigint-buffer/package.json').vaultImplementation,'pure-js-local');
   const layouts=splReq('@solana/buffer-layout-utils');
   for(const bits of [64,128,192,256]) for(const suffix of ['','be']) {
     const layout=layouts['u'+bits+suffix]();
@@ -56,5 +56,20 @@ for(const scope of ['..','../frontend']) test(`${scope}: installed SPL layouts r
     layout.encode(value,bytes,0);
     assert.deepEqual(bytes,Buffer.alloc(bits/8,255));
     assert.equal(layout.decode(bytes,0),value);
+  }
+});
+test('browser bundle works without Node globals using frontend Buffer polyfill',()=>{
+  const req=createRequire(path.resolve(__dirname,'../frontend/package.json'));
+  const {buildSync}=req('esbuild');
+  const {runInNewContext}=require('node:vm');
+  const bundle=buildSync({entryPoints:[path.resolve(__dirname,'../vendor/bigint-buffer/index.cjs')],bundle:true,write:false,platform:'browser',format:'iife',globalName:'VaultCodec',alias:{buffer:req.resolve('buffer/')}});
+  const browser=runInNewContext(bundle.outputFiles[0].text+';VaultCodec',{});
+  for(const width of [8,16,24,32]) {
+    const maximum=(1n<<BigInt(width*8))-1n;
+    for(const endian of ['LE','BE']) {
+      const bytes=browser['toBuffer'+endian](maximum,width);
+      assert.equal(bytes.toString('hex'),'ff'.repeat(width));
+      assert.equal(browser['toBigInt'+endian](bytes),maximum);
+    }
   }
 });
