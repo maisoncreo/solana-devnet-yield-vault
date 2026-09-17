@@ -43,3 +43,10 @@ npm install сообщил 15 findings в корневых зависимост�
 - TypeScript и frontend production build успешны.
 - npm audit: root 3 high, frontend 3 high; остаточный bigint-buffer и остальные замечания описаны в DEPENDENCY_AUDIT.md. Прежние числа выше — исторические.
 - On-chain исходник не изменён, повторный Devnet deploy не выполнялся.
+
+## Дополнение: закрытие high и проверка подписи
+
+- Нативный bigint-buffer заменён локальным JS-адаптером с явными границами; 5 codec-проверок прошли.
+- Добавлен тест отсутствующей подписи и подмены signer-флага; 19 интеграционных тестов прошли (17s).
+- npm audit: high/critical = 0 в корне и frontend; root 2 low / 10 moderate, frontend 18 moderate. Полные отчёты в audit/.
+- TypeScript и production build прошли. Предыдущие значения high выше относятся к промежуточной проверке.

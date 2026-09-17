@@ -1,0 +1,9 @@
+{
+  "name": "@vault-lab/bigint-buffer-js",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Auditable bounded pure-JavaScript bigint-buffer compatibility adapter; no native addon",
+  "main": "index.cjs",
+  "types": "index.d.ts",
+  "dependencies": { "buffer": "6.0.3" }
+}

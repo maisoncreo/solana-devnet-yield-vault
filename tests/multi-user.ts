@@ -44,6 +44,26 @@ describe('Independent depositors', () => {
     await assert.rejects(program.methods.withdraw(bn(100),bn(1)).accountsStrict({...accounts(bob),position:position(alice)}).signers([bob]).rpc(),(e:any)=>e.error?.errorCode?.code==='ConstraintSeeds');
     assert.deepEqual(await snapshot(),before);
   });
+  it('rejects missing owner signature, including a forged non-signer account meta',async()=>{
+    const before=await snapshot();
+    const instruction=await program.methods.withdraw(bn(100),bn(1)).accountsStrict(accounts(alice)).instruction();
+    const {blockhash}=await provider.connection.getLatestBlockhash();
+    const message=new anchor.web3.TransactionMessage({payerKey:admin.publicKey,recentBlockhash:blockhash,instructions:[instruction]}).compileToV0Message();
+    const unsignedOwner=new anchor.web3.VersionedTransaction(message);
+    unsignedOwner.sign([admin]); // Alice's required signature is intentionally absent.
+    const simulation = await provider.connection.simulateTransaction(unsignedOwner,{sigVerify:true});
+    assert.equal(simulation.value.err, 'SignatureFailure', JSON.stringify(simulation.value));
+    assert.deepEqual(await snapshot(),before);
+    // Also prove the program itself enforces Signer, even when a caller clears the meta flag.
+    const userMeta=instruction.keys.find(key=>key.pubkey.equals(alice.publicKey));
+    assert.ok(userMeta);
+    userMeta.isSigner=false;
+    await assert.rejects(provider.sendAndConfirm(new Transaction().add(instruction)),(e:any)=>{
+      const detail=String(e)+' '+(e.logs||[]).join(' ');
+      return /AccountNotSigner|account did not sign/i.test(detail);
+    });
+    assert.deepEqual(await snapshot(),before);
+  });
   it('allocates yield fairly across two depositors and conserves assets through partial and full withdrawals',async()=>{
     assert.deepEqual(await snapshot(),{assets:'2200',totalShares:'2000',vaultTokens:2200n,aliceTokens:9000n,bobTokens:8900n,aliceShares:'1000',bobShares:'1000'});
     await program.methods.addYield(bn(200)).accountsStrict({admin:admin.publicKey,mint,vault,vaultToken,adminToken,tokenProgram:TOKEN_PROGRAM_ID}).rpc();

@@ -65,11 +65,10 @@
     },
     "@solana/buffer-layout-utils": {
       "name": "@solana/buffer-layout-utils",
-      "severity": "high",
+      "severity": "moderate",
       "isDirect": false,
       "via": [
-        "@solana/web3.js",
-        "bigint-buffer"
+        "@solana/web3.js"
       ],
       "effects": [
         "@solana/spl-token"
@@ -78,15 +77,11 @@
       "nodes": [
         "node_modules/@solana/buffer-layout-utils"
       ],
-      "fixAvailable": {
-        "name": "@solana/spl-token",
-        "version": "0.1.8",
-        "isSemVerMajor": true
-      }
+      "fixAvailable": false
     },
     "@solana/spl-token": {
       "name": "@solana/spl-token",
-      "severity": "high",
+      "severity": "moderate",
       "isDirect": true,
       "via": [
         "@solana/buffer-layout-utils",
@@ -99,11 +94,7 @@
       "nodes": [
         "node_modules/@solana/spl-token"
       ],
-      "fixAvailable": {
-        "name": "@solana/spl-token",
-        "version": "0.1.8",
-        "isSemVerMajor": true
-      }
+      "fixAvailable": false
     },
     "@solana/spl-token-group": {
       "name": "@solana/spl-token-group",
@@ -119,11 +110,7 @@
       "nodes": [
         "node_modules/@solana/spl-token-group"
       ],
-      "fixAvailable": {
-        "name": "@solana/spl-token",
-        "version": "0.1.8",
-        "isSemVerMajor": true
-      }
+      "fixAvailable": false
     },
     "@solana/spl-token-metadata": {
       "name": "@solana/spl-token-metadata",
@@ -139,11 +126,7 @@
       "nodes": [
         "node_modules/@solana/spl-token-metadata"
       ],
-      "fixAvailable": {
-        "name": "@solana/spl-token",
-        "version": "0.1.8",
-        "isSemVerMajor": true
-      }
+      "fixAvailable": false
     },
     "@solana/wallet-adapter-base": {
       "name": "@solana/wallet-adapter-base",
@@ -152,9 +135,7 @@
       "via": [
         "@solana/web3.js"
       ],
-      "effects": [
-        "@solana/wallet-standard-wallet-adapter-react"
-      ],
+      "effects": [],
       "range": "*",
       "nodes": [
         "node_modules/@solana/wallet-adapter-react-ui/node_modules/@solana/wallet-adapter-base",
@@ -222,7 +203,9 @@
         "@solana/wallet-adapter-base",
         "@solana/web3.js"
       ],
-      "effects": [],
+      "effects": [
+        "@solana/wallet-standard-wallet-adapter-react"
+      ],
       "range": "*",
       "nodes": [
         "node_modules/@solana/wallet-adapter-react-ui/node_modules/@solana/wallet-standard-wallet-adapter-base",
@@ -258,6 +241,7 @@
         "@coral-xyz/borsh",
         "@solana-mobile/mobile-wallet-adapter-protocol-web3js",
         "@solana-mobile/wallet-adapter-mobile",
+        "@solana/buffer-layout-utils",
         "@solana/spl-token",
         "@solana/spl-token-group",
         "@solana/spl-token-metadata",
@@ -272,41 +256,6 @@
         "node_modules/@solana/web3.js"
       ],
       "fixAvailable": false
-    },
-    "bigint-buffer": {
-      "name": "bigint-buffer",
-      "severity": "high",
-      "isDirect": false,
-      "via": [
-        {
-          "source": 1103747,
-          "name": "bigint-buffer",
-          "dependency": "bigint-buffer",
-          "title": "bigint-buffer Vulnerable to Buffer Overflow via toBigIntLE() Function",
-          "url": "https://github.com/advisories/GHSA-3gc7-fjrx-p6mg",
-          "severity": "high",
-          "cwe": [
-            "CWE-120"
-          ],
-          "cvss": {
-            "score": 7.5,
-            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
-          },
-          "range": "<=1.1.5"
-        }
-      ],
-      "effects": [
-        "@solana/buffer-layout-utils"
-      ],
-      "range": "*",
-      "nodes": [
-        "node_modules/bigint-buffer"
-      ],
-      "fixAvailable": {
-        "name": "@solana/spl-token",
-        "version": "0.1.8",
-        "isSemVerMajor": true
-      }
     },
     "jayson": {
       "name": "jayson",
@@ -393,18 +342,18 @@
     "vulnerabilities": {
       "info": 0,
       "low": 0,
-      "moderate": 16,
-      "high": 3,
+      "moderate": 18,
+      "high": 0,
       "critical": 0,
-      "total": 19
+      "total": 18
     },
     "dependencies": {
-      "prod": 296,
+      "prod": 297,
       "dev": 61,
       "optional": 62,
       "peer": 245,
       "peerOptional": 0,
-      "total": 609
+      "total": 610
     }
   }
 }

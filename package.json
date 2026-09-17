@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "test": "ts-mocha -p tsconfig.json -t 1000000 tests/**/*.ts",
-    "build": "npm --prefix frontend run build && node scripts/stage-site.cjs"
+    "build": "npm --prefix frontend run build && node scripts/stage-site.cjs",
+    "test:codec": "node --test tests-unit/*.test.cjs"
   },
   "dependencies": {
     "@coral-xyz/anchor": "0.31.1",
-    "@solana/spl-token": "0.4.14"
+    "@solana/spl-token": "0.4.14",
+    "bigint-buffer": "file:vendor/bigint-buffer"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.0",
@@ -19,6 +21,7 @@
   },
   "overrides": {
     "toml": "4.2.0",
-    "serialize-javascript": "7.0.5"
+    "serialize-javascript": "7.0.5",
+    "bigint-buffer": "$bigint-buffer"
   }
 }

@@ -4,25 +4,29 @@
 
 | Область | До: low / moderate / high / critical | После |
 |---|---|---|
-| Корень | 2 / 8 / 6 / 0 | 2 / 8 / 3 / 0 |
-| Frontend | 0 / 15 / 5 / 0 | 0 / 16 / 3 / 0 |
+| Корень | 2 / 8 / 6 / 0 | 2 / 10 / 0 / 0 |
+| Frontend | 0 / 15 / 5 / 0 | 0 / 18 / 0 / 0 |
 
 ## High: исправления
 
 - `toml`: [неконтролируемая рекурсия](https://github.com/advisories/GHSA-82x6-q7mm-w9cf) и [prototype pollution](https://github.com/advisories/GHSA-v5mp-jgw5-2x6j). Anchor использует `toml.parse` при чтении локального Anchor.toml. Недоверенный TOML мог вызвать отказ в обслуживании или изменение прототипа. В обоих package.json явно закреплён override `toml: 4.2.0`, закрывающий обе advisory. Так как это переход основной версии транзитивной зависимости, совместимость проверяется реальным запуском Anchor integration tests, читающим Anchor.toml. Node.js 22 удовлетворяет требованию Node >=20.
 - `serialize-javascript`: [возможность исполнения кода](https://github.com/advisories/GHSA-5c6j-r48x-rmvq) при обработке специально подготовленных объектов. Зависимость Mocha используется в инструментах тестирования, не в on-chain программе. Корневой override закрепляет `7.0.5`; эта версия также закрывает [CPU exhaustion](https://github.com/advisories/GHSA-qj8w-gfj5-8c6v). Проверяется запуском полного набора тестов. Режим параллельных worker-процессов Mocha отдельно не проверялся.
 
-## High: оставшийся риск, не объявлен исправленным
+## High: bigint-buffer удалён и заменён
 
-[bigint-buffer / GHSA-3gc7-fjrx-p6mg](https://github.com/advisories/GHSA-3gc7-fjrx-p6mg): buffer overflow в `toBigIntLE`. Цепочка: `@solana/spl-token -> @solana/buffer-layout-utils -> bigint-buffer@1.1.5`. Три high в каждой области — эта зависимость и два её родителя. npm сообщает `fixAvailable: false`.
+[GHSA-3gc7-fjrx-p6mg](https://github.com/advisories/GHSA-3gc7-fjrx-p6mg) относится к buffer overflow в нативной реализации `bigint-buffer`. Проверены новые registry-версии `@solana/spl-token@0.4.15` и `@solana/buffer-layout-utils@0.3.0`: цепочка всё ещё включает `bigint-buffer`. Простое обновление не устраняет риск.
 
-Браузерный entrypoint пакета использует JavaScript вместо native binding. В Node entrypoint возможна загрузка native binding, поэтому риск для Node-скриптов не исключён. Проверенный `buffer-layout-utils` декодирует числовые поля фиксированной длины (8, 16, 24, 32 байта); произвольные пользовательские буферы приложение напрямую в `toBigIntLE` не передаёт. Это ограничивает поверхность атаки, но не является доказательством полной недостижимости уязвимости.
+Вместо нативного пакета используется локальный адаптер `@vault-lab/bigint-buffer-js` в `vendor/bigint-buffer`, установленный под совместимым dependency name. Direct file dependency и `$bigint-buffer` override применены в корне и frontend. Это явно сопровождаемая проектом реализация, а не переименование уязвимого кода: нативный код, bindings и установочный build script отсутствуют.
 
-Решение для учебного Devnet: документировать остаточный риск; не использовать эти Node-инструменты как публичный сервис обработки недоверенных данных. До mainnet требуется обновлённая upstream-зависимость либо проверенная замена реализации и отдельная проверка всех путей декодирования. Мы не подменяли пакет непроверенным форком и не скрывали audit через `--omit` или изменение порога severity.
+Адаптер поддерживает четыре используемые функции преобразования Buffer/BigInt, проверяет неотрицательность, переполнение и длину (максимум 4096 байт). Для проекта используются layout 8/16/24/32 байта. Отличия от upstream: ошибочные и переполняющиеся значения отклоняются вместо усечения. Код не изменяет входные буферы. Границы совместимости описаны в `vendor/bigint-buffer/README.md`.
+
+Пять автоматических проверок `npm run test:codec` охватывают известные значения, порядок байтов, пустые буферы, случайные значения, максимальные значения, переполнение, неверные типы, превышение длины и фактическое подключение адаптера через SPL в корне и frontend. Тесты против локального validator проверяют реальные SPL инструкции и состояния.
+
+**Итоговый audit: high = 0, critical = 0 в обеих установках.** Это не независимый аудит локального адаптера. Его сопровождение и проверка совместимости при обновлениях теперь являются обязанностью проекта; предпочтителен проверенный upstream-вариант, когда он появится.
 
 ## Остальные замечания
 
-Остаются moderate/low в цепочках `jayson`, `uuid`, `stream-json`, `mocha` и кошельковых адаптеров. Полные списки сохранены в `audit/npm-root.json` и `audit/npm-frontend.json`. Lock-файл frontend после разрешения зависимостей даёт на одно moderate больше; это не отчёт «всё исправлено». npm также выдаёт peer-dependency warnings для транзитивных wallet/mobile/React Native пакетов. Проверка TypeScript и Vite build проходит; мобильный React Native сценарий не проверен.
+Остаются moderate/low в цепочках `uuid`, `stream-json`, `diff` и их родителей (`jayson`, `mocha`, SPL, Anchor) и кошельковых адаптеров. Полные списки сохранены в `audit/npm-root.json` и `audit/npm-frontend.json`. Количество moderate зависит также от транзитивных родителей; это не отчёт «всё исправлено». npm также выдаёт peer-dependency warnings для транзитивных wallet/mobile/React Native пакетов. Проверка TypeScript и Vite build проходит; мобильный React Native сценарий не проверен.
 
 ## Воспроизведение
 
@@ -31,6 +35,7 @@ npm ci
 npm audit --json
 npm --prefix frontend ci
 npm --prefix frontend audit --json
+npm run test:codec
 ```
 
 Ненулевой exit code audit ожидаем, пока остаются замечания. `npm audit fix --force` не применялся. Успешные тесты не являются аудитом безопасности и не отменяют оставшиеся риски.

@@ -15,7 +15,8 @@
     "@solana/wallet-adapter-react-ui": "0.9.39",
     "buffer": "6.0.3",
     "react": "19.1.1",
-    "react-dom": "19.1.1"
+    "react-dom": "19.1.1",
+    "bigint-buffer": "file:../vendor/bigint-buffer"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
@@ -24,6 +25,7 @@
     "vite": "^6.4.0"
   },
   "overrides": {
-    "toml": "4.2.0"
+    "toml": "4.2.0",
+    "bigint-buffer": "$bigint-buffer"
   }
 }
