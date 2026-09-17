@@ -1,0 +1,44 @@
+
+> defi-vault@0.1.0 test:codec
+> node --test tests-unit/*.test.cjs
+
+TAP version 13
+# Subtest: known endian vectors, zero and empty buffer
+ok 1 - known endian vectors, zero and empty buffer
+  ---
+  duration_ms: 3.795526
+  ...
+# Subtest: random and boundary values agree with independent hex reference and do not mutate input
+ok 2 - random and boundary values agree with independent hex reference and do not mutate input
+  ---
+  duration_ms: 7.269346
+  ...
+# Subtest: rejects negative, overflowing, malformed and oversized inputs
+ok 3 - rejects negative, overflowing, malformed and oversized inputs
+  ---
+  duration_ms: 1.698289
+  ...
+# Subtest: ..: installed SPL layouts resolve to local adapter and round-trip u64/u128/u192/u256
+ok 4 - ..: installed SPL layouts resolve to local adapter and round-trip u64/u128/u192/u256
+  ---
+  duration_ms: 192.12806
+  ...
+# Subtest: ../frontend: installed SPL layouts resolve to local adapter and round-trip u64/u128/u192/u256
+ok 5 - ../frontend: installed SPL layouts resolve to local adapter and round-trip u64/u128/u192/u256
+  ---
+  duration_ms: 129.580732
+  ...
+# Subtest: browser bundle works without Node globals using frontend Buffer polyfill
+ok 6 - browser bundle works without Node globals using frontend Buffer polyfill
+  ---
+  duration_ms: 110.410478
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 545.437964

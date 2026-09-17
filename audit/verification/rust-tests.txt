@@ -1,0 +1,14 @@
+running 10 tests
+test test_id ... ok
+test tests::deposit_after_yield ... ok
+test tests::addition_overflow_rejected ... ok
+test tests::dust_rounds_down ... ok
+test tests::division_zero_rejected ... ok
+test tests::partial_withdraw ... ok
+test tests::intermediate_u128 ... ok
+test tests::result_overflow_rejected ... ok
+test tests::subtraction_underflow_rejected ... ok
+test tests::withdraw_yield ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

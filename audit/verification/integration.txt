@@ -1,0 +1,33 @@
+
+Found a 'test' script in the Anchor.toml. Running it as a test suite!
+
+Running test suite: "/Users/talbek/Documents/Codex/2026-09-13/referenced-chatgpt-conversation-this-is-an/work/review/github-fresh/Anchor.toml"
+
+
+
+  Vault transactions
+    ✔ initializes a vault with zero assets (547ms)
+    ✔ rejects yield without depositors atomically
+    ✔ rejects zero deposit atomically
+    ✔ first deposit creates shares 1:1 (496ms)
+    ✔ admin yield increases assets without shares (539ms)
+    ✔ second deposit uses current share price (534ms)
+    ✔ rejects deposit slippage atomically
+    ✔ rejects yield from a different admin
+    ✔ rejects a token account owned by another user (520ms)
+    ✔ rejects a different mint token account (1830ms)
+    ✔ rejects capacity overflow atomically
+    ✔ rejects excessive withdrawal atomically
+    ✔ rejects withdrawal slippage atomically
+    ✔ ignores direct donations in share price (448ms)
+    ✔ withdraws principal plus yield (545ms)
+    ✔ reopens empty vault at 1:1 despite surplus (548ms)
+
+  Independent depositors
+    ✔ rejects Bob withdrawing Alice position without changing either balance or position
+    ✔ rejects missing owner signature, including a forged non-signer account meta
+    ✔ allocates yield fairly across two depositors and conserves assets through partial and full withdrawals (2101ms)
+
+
+  19 passing (18s)
+
